@@ -13,3 +13,4 @@ class CompressedCourse(CallbackData, prefix='compressed_course'):
 
 class Lesson(CallbackData, prefix='lesson'):
     index : int
+    course_code: str

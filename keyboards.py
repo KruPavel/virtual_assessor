@@ -48,6 +48,6 @@ def get_course_keyboard(code):
     course_markup = InlineKeyboardBuilder()
     for i, value in enumerate(course.lessons):
         course_markup.row(InlineKeyboardButton(
-            text=f"{i + 1}. {value}", callback_data=Lesson(index=int(i + 1)).pack()))
-    course_markup.row(InlineKeyboardButton(text='Назад', callback_data=Lesson(index=-1).pack()))
+            text=f"{i + 1}. {value}", callback_data=Lesson(index=int(i + 1), course_code=code).pack()))
+    course_markup.row(InlineKeyboardButton(text='Назад', callback_data=Lesson(index=-1, course_code='').pack()))
     return course_markup.as_markup()
