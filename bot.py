@@ -27,7 +27,8 @@ class AssesorBot(Bot):
             self.choose_course, Command('choose_course'))
         self.router.callback_query.register(
             self.choosing_course, CompressedCourse.filter())
-        self.router.callback_query.register(self.choossing_lesson, Lesson.filter())
+        self.router.callback_query.register(
+            self.choossing_lesson, Lesson.filter())
 
     async def start(self, message: types.Message):
         await self.set_my_commands(self.default_commands)
