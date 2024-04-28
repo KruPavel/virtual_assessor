@@ -10,6 +10,8 @@
 ### Нейронная сеть
 ## Запуск:
 запустить bot.py
-
+```
+python3 bot.py
+```
 ###  Ссылка на бота:
 https://t.me/virtual_assesor_bot
