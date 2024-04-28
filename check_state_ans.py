@@ -20,7 +20,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
 model = QuestionAnsweringClassifier().to(device)
-model.load_state_dict(torch.load('model3.pth'))
+model.load_state_dict(torch.load('model4.pth'))
 
 
 def get_state(text, question, answer):
@@ -33,7 +33,7 @@ def get_state(text, question, answer):
 
     with torch.no_grad():
         outputs = model(input_ids, attention_masks)[0]
-        # print(outputs, torch.abs(outputs[0]), torch.abs(outputs[1]))
+        print(outputs, torch.abs(outputs[0]), torch.abs(outputs[1]))
         if torch.abs(outputs[0]) > torch.abs(outputs[1]):
             return 0
         return 1
