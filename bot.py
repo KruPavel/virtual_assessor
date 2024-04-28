@@ -13,6 +13,8 @@ from keyboards import choose_keyboard, get_course_keyboard
 from filters import CompressedCourse, Lesson
 from states import GetAnswer
 
+from check_state_ans import get_state
+
 
 class AssesorBot(Bot):
     def __init__(self, token: str, session: BaseSession | None = None, parse_mode: str | None = None, disable_web_page_preview: bool | None = None, protect_content: bool | None = None) -> None:
@@ -92,8 +94,8 @@ class AssesorBot(Bot):
         for paragraph in document.paragraphs:
             lesson_text += paragraph.text
 
-        print(lesson_text, question, message.text)
-        if not randint(0, 2):
+        # print(lesson_text, question, message.text)
+        if get_state(lesson_text, question, message.text):
             await message.answer(text="Правильно!")
         else:
             await message.answer(text="Неправильно!")
@@ -101,7 +103,7 @@ class AssesorBot(Bot):
 
 
 if __name__ == '__main__':
-    with open('info.json', 'r') as file:
+    with open('info.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
         bot = AssesorBot(token=data.get('token'))
         bot.dispatcher.run_polling(bot)
